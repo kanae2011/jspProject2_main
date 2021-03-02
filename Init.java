@@ -40,7 +40,7 @@ public class Init extends HttpServlet {
 		System.out.println("--jspProject2 실행--");
 		System.out.println("--서버가 실행을 시작할 때 실행되는 처리--");
 		
-		//게시판 객체 생성 후 저장 
+		////////게시판 객체 생성 후 저장//////// 
 		//dao 생성 저장
 		Beans.putDAO("boardDAO", new BoardDAO());
 		
@@ -63,7 +63,7 @@ public class Init extends HttpServlet {
 		System.out.println(Beans.getDAO("boardDAO"));
 		
 		
-		//회원관리객체 생성 후 저장 
+		///////회원관리객체 생성 후 저장///////// 
 		
 		//dao 생성 저장
 		Beans.putDAO("memberDAO", new MemberDAO());
@@ -82,6 +82,16 @@ public class Init extends HttpServlet {
 		Beans.get("/member/list.jsp").setDAO(Beans.getDAO("memberDAO"));
 		Beans.get("/member/gradeModify.jsp").setDAO(Beans.getDAO("memberDAO"));
 		Beans.get("/member/view.jsp").setDAO(Beans.getDAO("memberDAO"));
+		
+		
+		/////////////공지사항 객체 생성 후 저장//////////////////
+		
+		Beans.putDAO("noticeDAO", new NoticeDAO());
+		
+		Beans.put("/notice/list.jsp", new NoticeListService());
+		
+		
+		Beans.get("/notice/list.jsp").setDAO(Beans.getDAO("noticeDAO"));
 		
 		//오라클 드라이버와 필요한 메소드 로딩 
 		try {
